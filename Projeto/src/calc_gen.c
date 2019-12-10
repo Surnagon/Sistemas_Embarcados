@@ -1,19 +1,22 @@
 #include <stdlib.h>
 #include <time.h>
 #include <math.h>
+#include <stdio.h>
+#include "calc_gen.h"
 
-unsigned select, oper_select;
-bool timeout;
+void calc_gen_start()
+{
+        // Initialization, should only be called once.
+	srand((unsigned)time(NULL));
+}
 
+unsigned calc_generate()
+{
+	unsigned select, oper_select;
+	int a, b;
 
-
-srand((unsigned)time(NULL));   // Initialization, should only be called once.
-   
-int a, b;
-
-
-select = 0;
-
+	oper_select = (rand() % (4)) + 1;
+	
    switch(oper_select)
    {
       case 1:
@@ -51,7 +54,10 @@ select = 0;
          printf("\r\n");
          break;
       default:
-         printf("\r\n opcao invalida %d", result);
+         printf("\r\n Houve um erro. Opcao invalida. Tente novamente");
          printf("\r\n");
          break;
    }
+   return select;
+}
+
